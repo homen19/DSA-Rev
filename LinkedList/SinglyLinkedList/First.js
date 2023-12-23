@@ -35,6 +35,30 @@ class First {
             current.next = newNode;
         }
     }
+    // add node in the given position
+    insertGivenPosition(data, position) {
+        const newNode = new Node(data);
+        let current = this.head;
+        let count = 0;
+        let prev = null;
+        if(!this.head) {
+            this.head = newNode;
+        }
+        else if(position <=1 ) {
+            newNode.next = this.head;
+            this.head = newNode;
+            
+        }
+        else{
+            while(current !== null && count < position) {
+                prev = current;
+                current = current.next;
+                count++;
+            }
+            newNode.next = current;
+            prev.next = newNode;
+        }
+    } 
     viewData() {
         let current = this.head;
         while(current) {
@@ -59,3 +83,5 @@ myList.addNode(3);
 myList.addBegin(5);
 myList.viewData();
 console.log("total nodes in the list are : "+myList.countNode());
+myList.insertGivenPosition(20, 2);
+myList.viewData();
