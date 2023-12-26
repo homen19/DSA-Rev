@@ -59,6 +59,45 @@ class First {
             prev.next = newNode;
         }
     } 
+    deleteFirstNode(){
+        if(this.head === null) {
+            console.log("List is empty");
+            return;
+        }
+        else{
+            this.head = this.head.next;
+        }
+
+    }
+    delteIntermediateNode(position) {
+        let current = this.head;
+        let prev = null;
+        let count = 0;
+        if(this.head === null) {
+            console.log("List is empty");
+            return;
+        }
+        else{
+            while(current !== null && count < position) {
+                prev = current;
+                current = current.next;
+                count++;
+            }
+            prev.next = current.next;
+        }
+    }
+    reverseList() {
+        let prev = null;
+        let current = this.head;
+        let next = null;
+        while(current) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        this.head = prev;
+    }
     viewData() {
         let current = this.head;
         while(current) {
@@ -84,4 +123,14 @@ myList.addBegin(5);
 myList.viewData();
 console.log("total nodes in the list are : "+myList.countNode());
 myList.insertGivenPosition(20, 2);
+myList.viewData();
+myList.deleteFirstNode();
+console.log("After deleting first node the list are : ");
+myList.viewData();
+console.log("After deleted the intermediate node that is 3 position");
+myList.delteIntermediateNode(2);
+myList.viewData();
+// reversing the list
+console.log("After reverse the list is :");
+myList.reverseList();
 myList.viewData();
